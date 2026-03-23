@@ -4,10 +4,21 @@ mod model;
 mod renderer;
 mod ui;
 
-fn main() {
-    println!("Mini CAD Viewer");
-    renderer::setup::init();
+use app::App;
 
-    // Main loop
-    loop {}
+use winit::event_loop::EventLoop;
+
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    println!("Mini CAD Viewer");
+
+    // 1. Create the event loop
+    let event_loop = EventLoop::new()?;
+
+    // 2. Instanstiate the app
+    let mut app = App::new();
+
+    // 3. Run app
+    event_loop.run_app(&mut app)?;
+
+    Ok(())
 }
